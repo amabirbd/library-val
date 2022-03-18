@@ -3,9 +3,11 @@ import Header from "./Header";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div >
       <Header />
-      {children}
+      <div className="flex justify-center">
+        {children}
+      </div>
     </div>
   );
 };
