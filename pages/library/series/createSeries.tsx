@@ -15,7 +15,7 @@ async function createSeries(seriesTitle ) {
 }
 
 function CreateSeries() {
-  const [seriesTitle, setSeriesTitle] = useState("")
+  const [seriesTitle, setSeriesTitle] = useState(undefined)
 
 
   const formSubmitHandler = async( e) => {

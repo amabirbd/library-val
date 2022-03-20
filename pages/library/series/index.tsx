@@ -25,8 +25,8 @@ function Series(props) {
           <Link href={`/library/series/${item.title}`}>
 
             <li className='flex flex-row align-middle justify-between w-72 pt-5 cursor-pointer hover:text-red-500'  key={item.id}>
-                <div className='underline'>{item.title}</div>
-                <div className='flex '>number of books: {item.books.length}</div>
+                <div className='underline' key={item.name}>{item.title}</div>
+                <div className='flex ' key={item.id}>number of books: {item.books.length}</div>
             </li>
           </Link>
         ))
