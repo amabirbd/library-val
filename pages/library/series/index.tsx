@@ -49,13 +49,13 @@ function Series(props) {
   console.log("Series: ", series);
 
 
-  const refreshData = () => {
-    router.replace(router.asPath)
-      }
+  // const refreshData = () => {
+  //   router.replace(router.asPath)
+  //     }
 
-  useEffect(() => {
-    refreshData()
-  }, []) // SETTING SERIES AS A DEPENDENCY CREATES INFINITE LOOP
+  // useEffect(() => {
+  //   refreshData()
+  // }, []) // SETTING SERIES AS A DEPENDENCY CREATES INFINITE LOOP
   
   
   return (
