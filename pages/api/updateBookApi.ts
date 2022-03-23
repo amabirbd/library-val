@@ -7,15 +7,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).json({messsage: "method not allowed"})
   }
 
-  const {bookId, currentSeries, series} = JSON.parse(req.body);
+  const bookData = JSON.parse(req.body);
+
 
 
   const updatedBook = await prisma.book.update({
     where: {
-      id: bookId
+      id: bookData.bookId
     },
     data: {
-      series: currentSeries
+      seriesId: bookData.seriesId
     }
   })
 

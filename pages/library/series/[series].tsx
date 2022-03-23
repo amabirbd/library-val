@@ -1,15 +1,11 @@
 import prisma from '../../../lib/prisma';
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router"
-import { useState } from 'react';
-import { route } from 'next/dist/server/router';
 import Sidenav from '../../../components/Sidenav';
 import { useDrop } from 'react-dnd';
 
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-
-  // const {params} = context
+export const getServerSideProps: GetServerSideProps = async () => {
 
   //get all series
     const series = await prisma.series.findMany({
@@ -24,45 +20,45 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     })
 
-
     return { props: { series, books  } };
   };
 
 
 function SelectedSeries(props) {
 
-  const {books, series} = props;
-
+    const { series, books } = props;
     const router = useRouter()
     const seriesName = router.query.series
-
     const currentSeries = series.find((item) => seriesName === item.title )
-
-    // const currentSeriesBooks = currentSeries.books
-    // specific series object from the "series" array returned from prisma client
-    // const seriesObj = series.find(item => item.title === seriesName)
-
-
-    console.log("books: ", books);
-    
+    const currentSeriesId = currentSeries.id
 
   
     // MOVEBOOK
     const moveBook = async (bookId) => {
 
       console.log("MOVE BOOK CALLED");
+      console.log("current series: ", currentSeries);
+      console.log("current series id: ", currentSeriesId);
+      console.log("current book id: ", bookId.bookId);
       
-      updateBook(bookId, currentSeries, series)
-        .then(res => console.log(res)
+      const bookData = {
+        bookId: bookId.bookId,
+        seriesId: currentSeriesId
+      }
+
+
+      updateBook(bookData)
+        .then(res => console.log("returend updated data", res)
         )
-      
     }
 
     // UPDATEBOOK
-    async function updateBook(bookId, currentSeries, series ) {
+    async function updateBook(bookData) {
+      console.log("updatebook called", currentSeries);
+      
       const response = await fetch('/api/updateBookApi', {
         method: 'POST',
-        body: JSON.stringify(bookId, currentSeries, series)
+        body: JSON.stringify(bookData)
       })
   
       if (!response.ok) {

@@ -23,6 +23,7 @@
     "react-dnd": "^15.1.1",
     "react-dnd-html5-backend": "^15.1.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.28.1",
     "superjson": "^1.8.1"
   },
   "devDependencies": {

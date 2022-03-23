@@ -9,7 +9,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Home(props) {
   const { books } = props;  
-  console.log(books);
+  console.log("Books: ", books);
   
   return (
     <div className='flex flex-wrap flex-col content-center'>

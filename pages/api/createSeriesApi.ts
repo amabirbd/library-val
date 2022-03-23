@@ -1,8 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma";
-
-// const prisma = new PrismaClient()
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -10,10 +7,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).json({message: "method not allowed"})
   }
 
-  const {seriesTitle} = JSON.parse(req.body);
+  const seriesTitle = JSON.parse(req.body)
 
   const createdSeries = await prisma.series.create({
-    data: {
+    data: { 
       title: seriesTitle
     }
   })

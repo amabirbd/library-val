@@ -1,36 +1,38 @@
 import React, { useState } from 'react'
 
-async function createSeries(seriesTitle ) {
-  const response = await fetch('/api/createSeriesApi', {
-    method: 'POST',
-    body: JSON.stringify(seriesTitle)
-  })
 
-  if (!response.ok) {
-    throw new Error(response.statusText);
-
-  }
-
-  return await response.json();
-}
 
 function CreateSeries() {
-  const [seriesTitle, setSeriesTitle] = useState(undefined)
+  const [seriesTitle, setSeriesTitle] = useState('')
 
 
   const formSubmitHandler = async( e) => {
     e.preventDefault();
     
-    setSeriesTitle(e.target.value)
     console.log(seriesTitle);
 
     await createSeries(seriesTitle)
+      .then(res => console.log("Created Series: ", res))
     
   }
 
   const handleSeriesTitleChange = (e) => {
     setSeriesTitle(e.target.value)
     
+  }
+
+  async function createSeries(seriesTitle ) {
+    const response = await fetch('/api/createSeriesApi', {
+      method: 'POST',
+      body: JSON.stringify(seriesTitle)
+    })
+  
+    if (!response.ok) {
+      throw new Error(response.statusText);
+  
+    }
+  
+    return await response.json();
   }
 
 
