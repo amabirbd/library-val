@@ -1,5 +1,5 @@
 import prisma from '../../../lib/prisma';
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router"
 import Sidenav from '../../../components/Sidenav';
 import { useDrop } from 'react-dnd';

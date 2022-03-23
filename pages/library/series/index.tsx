@@ -1,7 +1,7 @@
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react'
+import React  from 'react'
 import prisma from '../../../lib/prisma';
 
 
